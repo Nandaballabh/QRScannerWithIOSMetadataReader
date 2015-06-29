@@ -18,7 +18,6 @@ typedef  void ((^completionBlock)(NSString * scanedString , BOOL finished));
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 @property (nonatomic, copy) completionBlock completionBlock;
 @property (nonatomic, assign) BOOL isReading;
-@property (nonatomic, strong) NSArray * metadataTypes;
 
 @end
 
@@ -43,10 +42,9 @@ static id _scanner = nil;
 }
 
 
-- (void) scanMetadataWithTypes:(NSArray *) metadataTypes completionBlock:(void (^)(NSString * scanedString , BOOL finished))completionBlock {
+- (void) scanMetadataWithCompletionBlock:(void (^)(NSString * scanedString , BOOL finished))completionBlock {
     
     self.completionBlock = completionBlock;
-    self.metadataTypes = metadataTypes;
     if(self.isReading) {
         [self startReading];
     }
@@ -85,7 +83,7 @@ static id _scanner = nil;
     dispatch_queue_t dispatchQueue;
     dispatchQueue = dispatch_queue_create("myQueue", NULL);
     [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
-    [captureMetadataOutput setMetadataObjectTypes:self.metadataTypes];
+    [captureMetadataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
     
     // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
     self.videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
@@ -121,9 +119,15 @@ static id _scanner = nil;
     if (metadataObjects != nil && [metadataObjects count] > 0) {
         // Get the metadata object.
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
-        if(self.completionBlock)
-            self.completionBlock ([metadataObj stringValue],YES);
-        [self stopReading];
+        if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
+            // If the found metadata is equal to the QR code metadata then update the status label's text,
+            // stop reading and change the bar button item's title and the flag's value.
+            // Everything is done on the main thread.
+            // [metadataObj stringValue]
+            if(self.completionBlock)
+                self.completionBlock ([metadataObj stringValue],YES);
+            [self stopReading];
+        }
     }
     
 }

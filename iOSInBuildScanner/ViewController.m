@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "NBScanner.h"
-#import <AVFoundation/AVFoundation.h>
 
 @interface ViewController ()
 
@@ -27,7 +26,7 @@
 }
 
 - (IBAction)startButtonTapped:(id)sender {
-    [[NBScanner scanner] scanMetadataWithTypes:@[AVMetadataObjectTypeQRCode,AVMetadataObjectTypePDF417Code,AVMetadataObjectTypeAztecCode] completionBlock:^(NSString *scannedString, BOOL finished) {
+    [[NBScanner scanner] scanMetadataWithCompletionBlock:^(NSString *scannedString, BOOL finished) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[[UIAlertView alloc]initWithTitle:@"" message:scannedString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
         });
