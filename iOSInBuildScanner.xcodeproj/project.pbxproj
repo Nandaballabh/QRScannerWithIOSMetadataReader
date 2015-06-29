@@ -14,6 +14,7 @@
 		B8CB91981B4164C500B6800F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CB91971B4164C500B6800F /* Images.xcassets */; };
 		B8CB919B1B4164C500B6800F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CB91991B4164C500B6800F /* LaunchScreen.xib */; };
 		B8CB91A71B4164C500B6800F /* iOSInBuildScannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB91A61B4164C500B6800F /* iOSInBuildScannerTests.m */; };
+		B8CB91B31B41651100B6800F /* NBScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CB91B21B41651100B6800F /* NBScanner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		B8CB91A01B4164C500B6800F /* iOSInBuildScannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSInBuildScannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CB91A51B4164C500B6800F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CB91A61B4164C500B6800F /* iOSInBuildScannerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSInBuildScannerTests.m; sourceTree = "<group>"; };
+		B8CB91B11B41651100B6800F /* NBScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBScanner.h; sourceTree = "<group>"; };
+		B8CB91B21B41651100B6800F /* NBScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBScanner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		B8CB91891B4164C500B6800F /* iOSInBuildScanner */ = {
 			isa = PBXGroup;
 			children = (
+				B8CB91B01B4164D000B6800F /* QRScanner */,
 				B8CB918E1B4164C500B6800F /* AppDelegate.h */,
 				B8CB918F1B4164C500B6800F /* AppDelegate.m */,
 				B8CB91911B4164C500B6800F /* ViewController.h */,
@@ -117,6 +121,15 @@
 				B8CB91A51B4164C500B6800F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8CB91B01B4164D000B6800F /* QRScanner */ = {
+			isa = PBXGroup;
+			children = (
+				B8CB91B11B41651100B6800F /* NBScanner.h */,
+				B8CB91B21B41651100B6800F /* NBScanner.m */,
+			);
+			name = QRScanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CB91B31B41651100B6800F /* NBScanner.m in Sources */,
 				B8CB91931B4164C500B6800F /* ViewController.m in Sources */,
 				B8CB91901B4164C500B6800F /* AppDelegate.m in Sources */,
 				B8CB918D1B4164C500B6800F /* main.m in Sources */,
@@ -347,7 +361,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = iOSInBuildScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -357,7 +373,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = iOSInBuildScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

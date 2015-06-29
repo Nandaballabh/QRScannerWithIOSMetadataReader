@@ -10,4 +10,7 @@
 
 @interface NBScanner : NSObject
 
++ (instancetype) scanner;
+- (void) scanMetadataWithTypes:(NSArray *) metadataTypes completionBlock:(void (^)(NSString * scanedString , BOOL finished))completionBlock;
+
 @end
